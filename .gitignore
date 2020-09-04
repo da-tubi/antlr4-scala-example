@@ -1,1 +1,6 @@
 out/
+.idea/
+.idea_modules/
+antlr4/src
+project/
+target/

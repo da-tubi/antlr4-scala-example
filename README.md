@@ -4,8 +4,10 @@ This repo is used to explore mill and antlr4.
 
 ## Cheatsheet
 ```
-mill example.checkFormat
-mill example.reformat
+bin/mill antlr4.genAntlr
+
+bin/mill example.checkFormat
+bin/mill example.reformat
 ```
 
 ## Original README
