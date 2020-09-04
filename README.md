@@ -4,10 +4,14 @@ This repo is used to explore mill and antlr4.
 
 ## Cheatsheet
 ```
+# Generate the antlr target Java sources
 bin/mill antlr4.genAntlr
 
-bin/mill example.checkFormat
-bin/mill example.reformat
+# Generate for Intellij Idea
+bin/mill mill.scalalib.GenIdea/idea
+
+# Run the example module
+bin/mill example.run
 ```
 
 ## Original README
