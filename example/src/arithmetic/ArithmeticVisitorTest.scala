@@ -3,7 +3,7 @@ package arithmetic
 import org.antlr.v4.runtime._
 import antlr._
 import scala.util.Try
-import scala.collection.JavaConversions._
+import scala.jdk.CollectionConverters._
 
 object ArithmeticVisitorTest extends App {
 
@@ -41,7 +41,7 @@ object ArithmeticVisitorTest extends App {
       val exprText = ctx.getText
       println(s"Expression after tokenization = $exprText")
 
-      val operands = ctx.NUMBER().toList.map(_.getText)
+      val operands = ctx.NUMBER().asScala.toList.map(_.getText)
       val operand1 =
         parseDouble(operands.lift(0).getOrElse("0.0")).getOrElse(0.0)
       val operand2 =

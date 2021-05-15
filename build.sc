@@ -6,7 +6,7 @@ import $ivy.`org.antlr:antlr4:4.8`
 import org.antlr.v4.Tool
 
 object example extends ScalaModule with ScalafmtModule {
-  override def scalaVersion = "2.12.12"
+  override def scalaVersion = "2.13.5"
 
   override def moduleDeps = Seq(antlr4)
 
