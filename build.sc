@@ -6,14 +6,9 @@ import $ivy.`org.antlr:antlr4:4.8`
 import org.antlr.v4.Tool
 
 object example extends ScalaModule with ScalafmtModule {
-  override def scalaVersion = "2.13.5"
+  override def scalaVersion = "3.0.0"
 
   override def moduleDeps = Seq(antlr4)
-
-  object test extends Tests {
-    override def ivyDeps = Agg(ivy"org.scalatest::scalatest:3.1.1")
-    def testFrameworks = Seq("org.scalatest.tools.Framework")
-  }
 }
 
 object antlr4 extends JavaModule {
