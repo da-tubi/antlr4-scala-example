@@ -1,32 +1,21 @@
 import mill._
-import mill.define.{Sources, Target}
+import mill.define._
 import scalalib._
 import scalafmt._
-import $ivy.`org.antlr:antlr4:4.8`
-import org.antlr.v4.Tool
+import $file.antlr
 
-object example extends ScalaModule with ScalafmtModule {
+import scala.collection.mutable
+
+object example extends ScalaModule with ScalafmtModule with antlr.AntlrModule {
   override def scalaVersion = "3.0.0"
-
-  override def moduleDeps = Seq(antlr4)
-}
-
-object antlr4 extends JavaModule {
 
   override def ivyDeps = Agg(ivy"org.antlr:antlr4-runtime:4.8")
 
-  def genAntlr = T {
+  override def antlrGenerateVisitor: Boolean = true
 
-    if (os.exists(millSourcePath / "src")) {
-      os.remove.all(millSourcePath / "src")
-    }
+  override def antlrPackage: Option[String] = Some("arithmetic.antlr")
 
-    Tool.main(Array(
-      s"${millSourcePath.toString}/ArithmeticParser.g4",
-      s"${millSourcePath.toString}/ArithmeticLexer.g4",
-      "-o", s"${millSourcePath.toString}/src/arithmetic/antlr",
-      "-package", "arithmetic.antlr",
-      "-visitor"
-    ))
+  override def antlrGrammarSources = T.sources {
+    Seq(millSourcePath / "resources" / "antlr4").map(PathRef(_))
   }
 }
